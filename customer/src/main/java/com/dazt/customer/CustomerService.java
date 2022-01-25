@@ -2,6 +2,8 @@ package com.dazt.customer;
 
 import com.dazt.clients.fraud.FraudCheckResponse;
 import com.dazt.clients.fraud.FraudClient;
+import com.dazt.clients.notification.NotificationClient;
+import com.dazt.clients.notification.NotificationResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -15,6 +17,8 @@ public class CustomerService {
     private final RestTemplate restTemplate;
 
     private final FraudClient fraudClient;
+
+    private final NotificationClient notificationClient;
 
     public void registerCustomer(CustomerRequest customerRequest){
         Customer customer = Customer.builder()
@@ -30,7 +34,10 @@ public class CustomerService {
         if(fraudCheckResponse != null && fraudCheckResponse.isFraudster()) {
             throw new IllegalStateException("Fraudster!!!");
         }
-        //TODO send notification
+        NotificationResponse notificationResponse = notificationClient.sendNotification("Se ha enviado la notification");
+        if(notificationResponse == null || notificationResponse.id() == null) {
+            throw new IllegalStateException("It was not possible to send the notification");
+        }
     }
 
 }

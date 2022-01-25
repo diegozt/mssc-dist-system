@@ -13,6 +13,7 @@
         <module>fraud</module>
         <module>eureka-server</module>
         <module>feign-client</module>
+        <module>notification</module>
     </modules>
 
     <name>mssc-dist-system</name>
