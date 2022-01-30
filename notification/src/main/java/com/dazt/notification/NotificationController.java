@@ -1,4 +1,4 @@
-package com.dazt;
+package com.dazt.notification;
 
 import com.dazt.clients.notification.NotificationResponse;
 import lombok.AllArgsConstructor;

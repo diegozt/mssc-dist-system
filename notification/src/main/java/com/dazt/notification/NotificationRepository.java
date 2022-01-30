@@ -1,4 +1,4 @@
-package com.dazt;
+package com.dazt.notification;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
